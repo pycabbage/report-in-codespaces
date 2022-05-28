@@ -10,8 +10,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 COPY scripts/* /tmp/scripts/
 
-RUN ls /tmp
-
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 RUN apt update
 
+RUN bash /tmp/scripts/install-pandoc.sh
