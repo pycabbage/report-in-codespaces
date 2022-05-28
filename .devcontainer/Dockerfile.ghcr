@@ -14,6 +14,7 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 RUN apt update
 
 RUN bash /tmp/scripts/install_texlive.sh
+RUN bash /tmp/scripts/update_texlive.sh;exit 0
 RUN bash /tmp/scripts/install_pandoc.sh
 RUN bash /tmp/scripts/install_pandoc-crossref.sh
 RUN bash /tmp/scripts/install_cpanm.sh

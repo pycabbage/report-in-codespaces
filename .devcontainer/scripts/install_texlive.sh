@@ -27,5 +27,3 @@ rm $ISO_PATH
 # tlmgr setup
 TLMGR_PATH=$(ls --color=none /usr/local/texlive/*/bin/*/tlmgr|tail -n1)
 $TLMGR_PATH path add
-# Update all packages
-$TLMGR_PATH update --self --all
