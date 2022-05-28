@@ -36,6 +36,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .devcontainer/
-          file: .devcontainer/base.Dockerfile.simple
+          file: .devcontainer/Dockerfile.ghcr
           push: true
           tags: ${{ steps.imagename.outputs.name }}:latest
