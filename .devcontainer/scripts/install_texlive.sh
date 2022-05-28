@@ -1,6 +1,10 @@
 #!/bin/bash
 
-whoami
+echo --USERNAME--
+echo $(whoami)
+echo $USER
+echo --USERNAME--
+exit 1
 
 ISO_URL="https://mirror.ctan.org/systems/texlive/Images/texlive2022.iso"
 ISO_PATH=/tmp/texlive.iso
