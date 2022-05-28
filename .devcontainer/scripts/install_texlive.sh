@@ -5,6 +5,7 @@ ISO_PATH=/tmp/texlive.iso
 echo Getting hashes...
 ISO_MD5=$(curl -kLs ${ISO_URL}.md5 | awk '{print $1}')
 ISO_SHA512=$(curl -kLs ${ISO_URL}.sha512 | awk '{print $1}')
+MOUNT_PATH=/media/texlive
 
 # Check aria2c exists
 if [ -n $(which aria2c) ]; then 
@@ -14,13 +15,13 @@ fi
 # Download texlive ISO
 aria2c -x16 -s16 --file-allocation=none -c -d $(dirname $ISO_PATH) -o $(basename $ISO_PATH) --checksum=md5=$ISO_MD5 --checksum=sha-512=$ISO_SHA512 "$ISO_URL"
 # Mount ISO
-mkdir -p /mnt/texlive
-echo mount -o loop -t iso9660 $ISO_PATH /mnt/texlive
-mount -o ro,loop,noauto -t iso9660 $ISO_PATH /mnt/texlive
+mkdir -p $MOUNT_PATH
+ls /tmp/
+mount -o ro,loop,noauto -t iso9660 $ISO_PATH $MOUNT_PATH
 # Install texlive
-echo I | /mnt/texlive/install-tl -no-gui -lang ja
+echo I | ${MOUNT_PATH}/install-tl -no-gui -lang ja
 # Unmount ISO
-umount -r /mnt/texlive
+umount -r $MOUNT_PATH
 # Remove ISO
 rm $ISO_PATH
 
