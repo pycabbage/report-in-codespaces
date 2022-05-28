@@ -1,11 +1,5 @@
 #!/bin/bash
 
-echo --USERNAME--
-echo $(whoami)
-echo $USER
-echo --USERNAME--
-exit 1
-
 ISO_URL="https://mirror.ctan.org/systems/texlive/Images/texlive2022.iso"
 ISO_PATH=/tmp/texlive.iso
 echo Getting hashes...
@@ -21,6 +15,7 @@ fi
 aria2c -x16 -s16 --file-allocation=none -c -d $(dirname $ISO_PATH) -o $(basename $ISO_PATH) --checksum=md5=$ISO_MD5 --checksum=sha-512=$ISO_SHA512 "$ISO_URL"
 # Mount ISO
 mkdir -p /mnt/texlive
+echo mount -o loop -t iso9660 $ISO_PATH /mnt/texlive
 mount -o loop -t iso9660 $ISO_PATH /mnt/texlive
 # Install texlive
 echo I | /mnt/texlive/install-tl -no-gui -lang ja
