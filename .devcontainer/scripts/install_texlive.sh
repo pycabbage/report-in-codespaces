@@ -16,7 +16,7 @@ aria2c -x16 -s16 --file-allocation=none -c -d $(dirname $ISO_PATH) -o $(basename
 # Mount ISO
 mkdir -p /mnt/texlive
 echo mount -o loop -t iso9660 $ISO_PATH /mnt/texlive
-mount -o loop -t iso9660 $ISO_PATH /mnt/texlive
+mount -o ro,loop,noauto -t iso9660 $ISO_PATH /mnt/texlive
 # Install texlive
 echo I | /mnt/texlive/install-tl -no-gui -lang ja
 # Unmount ISO
