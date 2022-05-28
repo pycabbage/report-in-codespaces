@@ -13,4 +13,6 @@ COPY scripts/* /tmp/scripts/
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 RUN apt update
 
-RUN bash /tmp/scripts/install-pandoc.sh
+RUN ls /tmp/scripts/
+
+# RUN bash /tmp/scripts/install-pandoc.sh
