@@ -7,7 +7,7 @@ ISO_MD5=$(curl -kLs ${ISO_URL}.md5 | awk '{print $1}')
 ISO_SHA512=$(curl -kLs ${ISO_URL}.sha512 | awk '{print $1}')
 MOUNT_PATH=/media/texlive
 
-apt install aria2 p7zip-full -y
+apt install aria2 p7zip-full libfontconfig1 libfontconfig-dev libfontconfig1-dev -y
 
 # Download texlive ISO
 aria2c -x16 -s16 --file-allocation=none -c -d $(dirname $ISO_PATH) -o $(basename $ISO_PATH) --checksum=md5=$ISO_MD5 --checksum=sha-512=$ISO_SHA512 "$ISO_URL"
