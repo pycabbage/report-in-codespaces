@@ -1,5 +1,7 @@
 #!/bin/bash
 
+whoami
+
 ISO_URL="https://mirror.ctan.org/systems/texlive/Images/texlive2022.iso"
 ISO_PATH=/tmp/texlive.iso
 echo Getting hashes...
@@ -20,6 +22,8 @@ mount -o loop -t iso9660 $ISO_PATH /mnt/texlive
 echo I | /mnt/texlive/install-tl -no-gui -lang ja
 # Unmount ISO
 umount -r /mnt/texlive
+# Remove ISO
+rm $ISO_PATH
 
 # tlmgr setup
 TLMGR_PATH=$(ls --color=none /usr/local/texlive/*/bin/*/tlmgr|tail -n1)
