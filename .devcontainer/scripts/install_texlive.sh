@@ -17,7 +17,8 @@ aria2c -x16 -s16 --file-allocation=none -c -d $(dirname $ISO_PATH) -o $(basename
 # Mount ISO
 mkdir -p $MOUNT_PATH
 ls /tmp/
-modprobe loop
+ls /sbin/ /bin/
+/sbin/modprobe loop
 mount -o ro,loop,noauto -t iso9660 $ISO_PATH $MOUNT_PATH
 # Install texlive
 echo I | ${MOUNT_PATH}/install-tl -no-gui -lang ja
