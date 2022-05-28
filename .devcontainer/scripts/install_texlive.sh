@@ -5,7 +5,7 @@ ISO_PATH=/tmp/texlive.iso
 echo Getting hashes...
 ISO_MD5=$(curl -kLs ${ISO_URL}.md5 | awk '{print $1}')
 ISO_SHA512=$(curl -kLs ${ISO_URL}.sha512 | awk '{print $1}')
-MOUNT_PATH=/media/texlive
+MOUNT_PATH=/texlive
 
 # Check aria2c exists
 if [ -n $(which aria2c) ]; then 
