@@ -5,7 +5,7 @@ name: Build Container
 on:
   push:
     paths:
-      - '.devcontainer/*'
+      - '.devcontainer/**/*'
       - '!.devcontainer/Dockerfile.codespaces'
       - '.github/workflows/build.yml'
   workflow_dispatch:
