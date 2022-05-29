@@ -5,8 +5,8 @@ name: Build Container
 on:
   push:
     paths:
-      - '.devcontainer/Dockerfile.texlive'
-      - '.devcontainer/Dockerfile.ghcr'
+      - '.devcontainer/*'
+      - '!.devcontainer/Dockerfile.codespaces'
       - '.github/workflows/build.yml'
   workflow_dispatch:
 
