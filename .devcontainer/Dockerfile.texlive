@@ -1,6 +1,8 @@
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.234.0/containers/ubuntu/.devcontainer/base.Dockerfile
-ARG TAG
-FROM ghcr.io/pycabbage/report-in-codespaces/codespaces-base:${TAG}
+
+# [Choice] Ubuntu version (use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon): ubuntu-22.04, ubuntu-20.04, ubuntu-18.04
+ARG VARIANT="jammy"
+FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -11,9 +13,5 @@ COPY scripts/* /tmp/scripts/
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 RUN apt update
 
-RUN bash /tmp/scripts/install_pandoc.sh
-RUN bash /tmp/scripts/install_pandoc-crossref.sh
-RUN bash /tmp/scripts/install_cpanm.sh
-RUN bash /tmp/scripts/install_latexindent.sh
-RUN bash /tmp/scripts/install_japanese.sh
-RUN bash /tmp/scripts/setup_gitpod.sh
+RUN bash /tmp/scripts/install_texlive.sh
+RUN bash /tmp/scripts/update_texlive.sh;exit 0

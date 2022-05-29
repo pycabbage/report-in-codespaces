@@ -1,1 +1,10 @@
-.vscode/
+*.aux
+*.dvi
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.log
+*.synctex(busy)
+
+**/*/priv_*
+**/*/__latexindent_temp.tex

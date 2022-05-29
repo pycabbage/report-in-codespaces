@@ -6,7 +6,7 @@
 		"dockerfile": "Dockerfile.codespaces",
 		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
 		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
-		// "args": { "VARIANT": "ubuntu-22.04" }
+		"args": { "TAG": "master" }
 	},
 
 	// Set *default* container specific settings.json values on container create.
@@ -14,7 +14,11 @@
 
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [],
+	"extensions": [
+		"James-Yu.latex-workshop",
+		"DavidAnson.vscode-markdownlint",
+		"VisualStudioExptTeam.vscodeintellicode"
+	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],

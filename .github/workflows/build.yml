@@ -5,7 +5,8 @@ name: Build Container
 on:
   push:
     paths:
-      - '.devcontainer/**'
+      - '.devcontainer/**/*'
+      - '!.devcontainer/Dockerfile.codespaces'
       - '.github/workflows/build.yml'
   workflow_dispatch:
 
@@ -13,7 +14,8 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  build:
+  texlive:
+    name: Install texlive
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,21 +23,85 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          config: .github/buildkit.toml
+
       - name: Log in to the GitHub Container registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Image Name
-        id: imagename
-        run: echo "::set-output name=name::${{ env.REGISTRY }}/${GITHUB_REPOSITORY,,}/codespace"
-
+      # - name: Image Name
+      #   id: imagename
+      #   run: echo "::set-output name=name::${{ env.REGISTRY }}/${GITHUB_REPOSITORY,,}/codespaces-base"
+      - name: Docker meta
+        id: meta_base
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/codespaces-base
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=ref,event=branch
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .devcontainer/
-          file: .devcontainer/base.Dockerfile.simple
+          file: .devcontainer/Dockerfile.texlive
+          pull: true
           push: true
-          tags: ${{ steps.imagename.outputs.name }}:latest
+          tags: ${{ steps.meta_base.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  install:
+    name: Install Other Dependencies
+    needs: [texlive]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          config: .github/buildkit.toml
+
+      - name: Log in to the GitHub Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Image Name
+      #   id: imagename
+      #   run: echo "::set-output name=name::${{ env.REGISTRY }}/${GITHUB_REPOSITORY,,}/codespaces"
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/codespaces
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=ref,event=branch
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .devcontainer/
+          file: .devcontainer/Dockerfile.ghcr
+          pull: true
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: 
+            TAG=${{ github.ref_name }}
