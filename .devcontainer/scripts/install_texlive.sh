@@ -20,10 +20,10 @@ mkdir -p $TEXLIVE_MOUNT_PATH
 7z x $TEXLIVE_ISO_PATH -o${TEXLIVE_MOUNT_PATH}
 # Install texlive
 chmod +x ${TEXLIVE_MOUNT_PATH}/install-tl
-echo I | ${MOUNT_PATH}/install-tl -no-gui -lang ja 
+echo I | ${TEXLIVE_MOUNT_PATH}/install-tl -no-gui -lang ja 
 # Unmount ISO
 # umount -r $MOUNT_PATH
-rm -fr ${MOUNT_PATH}
+rm -fr ${TEXLIVE_MOUNT_PATH}
 # Remove ISO
 rm $TEXLIVE_ISO_PATH
 
