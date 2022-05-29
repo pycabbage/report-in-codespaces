@@ -109,7 +109,7 @@
     ],
     "latex-workshop.latex.autoClean.run": "never",
     "latex-workshop.synctex.afterBuild.enabled": true,
-    "latex-workshop.latexindent.path": "/root/latexindent/latexindent.pl",
+    "latex-workshop.latexindent.path": "/usr/local/latexindent/latexindent.pl",
     "yaml.schemas": {
         "https://json.schemastore.org/github-action.json": "file:///workspaces/report/generate.yml",
         "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/cabbage/code/report/.github/workflows/build.yml"
