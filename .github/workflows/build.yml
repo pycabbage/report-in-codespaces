@@ -9,6 +9,12 @@ on:
       - '!.devcontainer/Dockerfile.codespaces'
       - '.github/workflows/build.yml'
   workflow_dispatch:
+    inputs:
+      ignoreCache:
+        description: 'Ignore cache'
+        type: boolean
+        default: false
+        required: false
 
 env:
   REGISTRY: ghcr.io
@@ -57,6 +63,7 @@ jobs:
           tags: ${{ steps.meta_base.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          no-cache: ${{ github.event.inputs.ignoreCache == 'true' || false }}
 
   install:
     name: Install Other Dependencies
@@ -105,3 +112,4 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: 
             TAG=${{ github.ref_name }}
+          no-cache: ${{ github.event.inputs.ignoreCache == 'true' || false }}
