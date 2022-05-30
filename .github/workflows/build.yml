@@ -58,7 +58,7 @@ jobs:
         with:
           context: .devcontainer/
           file: .devcontainer/Dockerfile.texlive
-          pull: ${{ github.event.inputs.ignoreCache == 'false' || true }}
+          pull: ${{ github.event.inputs.ignoreCache == 'false' || false }}
           push: true
           tags: ${{ steps.meta_base.outputs.tags }}
           cache-from: type=gha
@@ -105,7 +105,7 @@ jobs:
         with:
           context: .devcontainer/
           file: .devcontainer/Dockerfile.ghcr
-          pull: ${{ github.event.inputs.ignoreCache == 'false' || true }}
+          pull: ${{ github.event.inputs.ignoreCache == 'false' || false }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
