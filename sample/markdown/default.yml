@@ -6,7 +6,6 @@ variables:
   lang: ja-JP
   classoption:
   - pandoc
-  - titlepage
   documentclass: ltjsarticle
   fontsize: 14pt
   papersize: a4paper
@@ -23,4 +22,3 @@ highlight-style: monochrome
 log-file: pandoc.log
 include-in-header:
 - ./header.tex
-papersize: a4
