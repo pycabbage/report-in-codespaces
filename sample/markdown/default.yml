@@ -1,0 +1,24 @@
+input-file: markdown_sample.md
+output-file: markdown_sample.pdf
+from: markdown+hard_line_breaks+implicit_figures+fenced_code_blocks
+pdf-engine: lualatex
+variables:
+  lang: ja-JP
+  classoption:
+  - pandoc
+  documentclass: ltjsarticle
+  fontsize: 14pt
+  papersize: a4paper
+  geometry:
+  - a4paper
+  - margin=20mm
+  linkcolor: blue
+  # titlepage: true
+filters:
+- pandoc-crossref
+- type: citeproc
+number-sections: true
+highlight-style: monochrome
+log-file: pandoc.log
+include-in-header:
+- ./header.tex

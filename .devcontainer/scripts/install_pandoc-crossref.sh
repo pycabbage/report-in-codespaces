@@ -7,6 +7,8 @@ PANDOC_CROSSREF_PATH=/usr/local/bin/pandoc-crossref
 PANDOC_CROSSREF_MANPAGE_PATH=/usr/local/man/man1/
 
 curl -kLo $PANDOC_CROSSREF_PACK_PATH "$PANDOC_CROSSREF_PACK_URL"
-tar Jxfv $PANDOC_CROSSREF_PACK_PATH pandoc-crossref -C $(dirname $PANDOC_CROSSREF_PATH)
-tar Jxfv $PANDOC_CROSSREF_PACK_PATH pandoc-crossref.1 -C $PANDOC_CROSSREF_MANPAGE_PATH
+tar Jxfv $PANDOC_CROSSREF_PACK_PATH pandoc-crossref pandoc-crossref.1
+mv pandoc-crossref $PANDOC_CROSSREF_PATH
+mv pandoc-crossref.1 $PANDOC_CROSSREF_MANPAGE_PATH
 rm $PANDOC_CROSSREF_PACK_PATH
+chmod +x $PANDOC_CROSSREF_PATH
