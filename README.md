@@ -1,11 +1,23 @@
 # report-in-codespaces
 
-master build stats: [![Build Container](https://github.com/pycabbage/report-in-codespaces/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pycabbage/report-in-codespaces/actions/workflows/build.yml)  
-develop build stats: [![Build Container](https://github.com/pycabbage/report-in-codespaces/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/pycabbage/report-in-codespaces/actions/workflows/build.yml)
+[![Build Container](https://github.com/pycabbage/report-in-codespaces/actions/workflows/build.yml/badge.svg)](https://github.com/pycabbage/report-in-codespaces/actions/workflows/build.yml)
 
-Prebuilt texlive codespaces
+texlive codespaces pre-built on CI
 
-### contained tools
+## `.devcontainer/Dockerfile` Example
+
+```Dockerfile
+FROM ghcr.io/pycabbage/report-in-codespaces/codespaces:latest
+
+# Install package if necessary
+#tlmgr install sourcesanspro
+```
+
+## Self-Build Image
+[Fork this repository](https://github.com/pycabbage/report-in-codespaces/fork)
+
+
+## contained tools
 
 - texlive
 - latexindent
