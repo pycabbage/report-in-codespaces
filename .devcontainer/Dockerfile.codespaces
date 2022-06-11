@@ -1,2 +1,2 @@
 ARG TAG
-FROM ghcr.io/pycabbage/report-in-codespaces/codespaces:${TAG}
+FROM ghcr.io/pycabbage/texlive-codespaces/codespaces:${TAG}

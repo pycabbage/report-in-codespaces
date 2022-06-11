@@ -1,4 +1,4 @@
-# report-in-codespaces
+# texlive-codespaces
 
 master build stats: [![Build Container](https://github.com/pycabbage/texlive-codespaces/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pycabbage/texlive-codespaces/actions/workflows/build.yml)  
 develop build stats: [![Build Container](https://github.com/pycabbage/texlive-codespaces/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/pycabbage/texlive-codespaces/actions/workflows/build.yml)

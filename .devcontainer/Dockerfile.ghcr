@@ -1,6 +1,6 @@
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.234.0/containers/ubuntu/.devcontainer/base.Dockerfile
 ARG TAG
-FROM ghcr.io/pycabbage/report-in-codespaces/codespaces-base:${TAG}
+FROM ghcr.io/pycabbage/texlive-codespaces/codespaces-base:${TAG}
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
