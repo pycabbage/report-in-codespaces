@@ -16,4 +16,5 @@ RUN bash /tmp/scripts/install_pandoc-crossref.sh
 RUN bash /tmp/scripts/install_cpanm.sh
 RUN bash /tmp/scripts/install_latexindent.sh
 RUN bash /tmp/scripts/install_japanese.sh
+RUN bash /tmp/scripts/install_n_node.sh
 RUN bash /tmp/scripts/setup_gitpod.sh
