@@ -5,9 +5,36 @@ develop build stats: [![Build Container](https://github.com/pycabbage/texlive-co
 
 Prebuilt texlive codespaces
 
-### contained tools
+## contained tools
 
 - texlive
 - latexindent
 - pandoc
 - pandoc-crossref
+
+## Example codespaces config
+
+`.devcontainer/devcontainer.json`
+```json
+{
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": { "TAG": "latest" }
+	},
+	"extensions": [
+		"James-Yu.latex-workshop",
+		"DavidAnson.vscode-markdownlint",
+		"VisualStudioExptTeam.vscodeintellicode"
+	],
+	"remoteUser": "vscode"
+}
+```
+`.devcontainer/Dockerfile`
+```Dockerfile
+ARG TAG
+FROM ghcr.io/pycabbage/texlive-codespaces/codespaces:${TAG}
+
+# Install texlive package
+# RUN tlmgr install <package>
+```
